@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Cookie & Local Storage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: auto;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Quản lý Cookie & Local Storage</h2>
+        <input type="text" id="key" placeholder="Nhập tên dữ liệu">
+        <input type="text" id="value" placeholder="Nhập giá trị">
+        <button onclick="setCookie()">Thêm Cookie</button>
+        <button onclick="setLocalStorage()">Thêm Local Storage</button>
+        <h3>Danh sách Cookie:</h3>
+        <p id="cookieList"></p>
+        <h3>Danh sách Local Storage:</h3>
+        <p id="localStorageList"></p>
+    </div>
+
+    <script>
+        function setCookie() {
+            let key = document.getElementById("key").value;
+            let value = document.getElementById("value").value;
+            document.cookie = `${key}=${value}; path=/;`; 
+            showCookies();
+        }
+
+        function setLocalStorage() {
+            let key = document.getElementById("key").value;
+            let value = document.getElementById("value").value;
+            localStorage.setItem(key, value);
+            showLocalStorage();
+        }
+
+        function showCookies() {
+            document.getElementById("cookieList").innerText = document.cookie;
+        }
+
+        function showLocalStorage() {
+            let storageText = '';
+            for (let i = 0; i < localStorage.length; i++) {
+                let key = localStorage.key(i);
+                storageText += `${key}: ${localStorage.getItem(key)}\n`;
+            }
+            document.getElementById("localStorageList").innerText = storageText;
+        }
+
+        showCookies();
+        showLocalStorage();
+    </script>
+</body>
+</html>

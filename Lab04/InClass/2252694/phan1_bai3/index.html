@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý IndexedDB</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 6px;
+            display: block;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:active {
+            background-color: #388e3c;
+        }
+
+        h3 {
+            color: #333;
+            margin-top: 30px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        li:nth-child(even) {
+            background-color: #f1f1f1;
+        }
+
+        alert {
+            display: block;
+            background-color: #ffcccc;
+            color: #cc0000;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Quản lý dữ liệu bằng IndexedDB</h2>
+
+    <div class="container">
+        <label for="dbKey">Tên dữ liệu:</label>
+        <input type="text" id="dbKey">
+        <br>
+
+        <label for="dbValue">Giá trị:</label>
+        <input type="text" id="dbValue">
+        <br>
+
+        <button onclick="addIndexedDBData()">Thêm/Sửa</button>
+        <button onclick="deleteIndexedDBData()">Xóa</button>
+        
+        <h3>Danh sách dữ liệu</h3>
+        <ul id="dbDataList"></ul>
+    </div>
+
+    <script>
+        let db;
+
+        // Khởi tạo IndexedDB
+        let request = indexedDB.open("MyDatabase", 1);
+
+        request.onupgradeneeded = function(event) {
+            db = event.target.result;
+            if (!db.objectStoreNames.contains("storageData")) {
+                db.createObjectStore("storageData", { keyPath: "key" });
+            }
+        };
+
+        request.onsuccess = function(event) {
+            db = event.target.result;
+            showIndexedDBData();
+        };
+
+        request.onerror = function(event) {
+            console.log("Lỗi khi mở IndexedDB:", event.target.error);
+        };
+
+        // Hiển thị dữ liệu
+        function showIndexedDBData() {
+            let transaction = db.transaction(["storageData"], "readonly");
+            let store = transaction.objectStore("storageData");
+            let request = store.getAll();
+            
+            request.onsuccess = function() {
+                let list = document.getElementById("dbDataList");
+                list.innerHTML = "";
+                request.result.forEach(item => {
+                    let li = document.createElement("li");
+                    li.textContent = `${item.key}: ${item.value}`;
+                    list.appendChild(li);
+                });
+            };
+        }
+
+        // Thêm hoặc sửa dữ liệu
+        function addIndexedDBData() {
+            let key = document.getElementById("dbKey").value;
+            let value = document.getElementById("dbValue").value;
+
+            if (key && value) {
+                let transaction = db.transaction(["storageData"], "readwrite");
+                let store = transaction.objectStore("storageData");
+                store.put({ key: key, value: value });
+
+                transaction.oncomplete = function() {
+                    alert("Dữ liệu đã được thêm/sửa!");
+                    showIndexedDBData();
+                };
+            } else {
+                alert("Vui lòng nhập tên và giá trị!");
+            }
+        }
+
+        // Xóa dữ liệu
+        function deleteIndexedDBData() {
+            let key = document.getElementById("dbKey").value;
+
+            if (key) {
+                let transaction = db.transaction(["storageData"], "readwrite");
+                let store = transaction.objectStore("storageData");
+                store.delete(key);
+
+                transaction.oncomplete = function() {
+                    alert("Dữ liệu đã bị xóa!");
+                    showIndexedDBData();
+                };
+            } else {
+                alert("Vui lòng nhập tên dữ liệu cần xóa!");
+            }
+        }
+    </script>
+</body>
+</html>
