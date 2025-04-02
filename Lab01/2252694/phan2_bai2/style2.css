@@ -1,0 +1,98 @@
+* {
+    box-sizing: border-box;
+    background-color: #F9F9F9;
+}
+
+.headerLogo {
+    border: 8px solid #F20000;
+    border-radius: 20px;
+}
+
+.headerContent {
+    text-shadow: 5px 5px blue;
+    color: #A63B3F;
+    font-size: 38px;
+    font-weight: 900;
+}
+
+.middleContent {
+    width: 1180px;
+}
+
+.beginE1 {
+    font-size: 60px;
+    font-weight: 900;
+}
+
+.endE1, .endE2 {
+    font-size: 30px;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.endE3 {
+    font-size: 30px;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.normal {
+    font-size: 18px;
+}
+
+h2 {
+    font-size: 30px;
+    font-weight: 800;
+    color: #A53A3E;
+}
+
+.aRed {
+    color: red;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+td {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.footer {
+    margin-top: 20px;
+    display: flex;
+}
+
+.footer #E1 {
+    color: #5F8E90;
+    font-size: 18px;
+    text-shadow: 2px 0px 3px rgba(0, 0, 0, 3);
+}
+
+.footer .E1::after {
+    text-shadow: none;
+}
+
+.footer div::after {
+    content: "| ";
+    color: black;
+    margin-right: 3px;
+    margin-left: 2px;
+    font-size: 18px;
+}
+
+.footer div:last-child::after {
+    display: none;
+}

@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    width: 800px;
+}
+
+header {
+    background-color: gray;
+    height: 50px;
+    font-size: 30px;
+    font-weight: 800;
+    padding: 5px 0px 10px 10px;
+}
+
+.breadcrumb {
+    background-color: blue;
+    height: 50px;
+}
+
+.breadcrumb .list {
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+    height: 100%;
+    gap: 20px;
+}
+
+.breadcrumb .list .element a {
+    color: white;
+}
+
+.middle {
+    display: flex;
+}
+
+.middle .left {
+    width: 250px;
+    margin-top: 0;
+}
+
+.middle .left .Ltop {
+    height: 150px;
+    background-color: yellow;
+}
+
+.middle .left .Ltop ul {
+    margin: 0;
+}
+
+.middle .left .Lbottom {
+    height: 150px;
+    background-color: gray;
+}
+
+.middle .left .Lbottom ul {
+    margin: 0;
+}
+
+.middle .right {
+    width: 550px;
+}
+
+.middle .right .Rtop {
+    margin: 20px 0 20px 15px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.middle .right .Rtop .p1 {
+    margin-bottom: 20px;    
+}
+
+.middle .right .Rbottom {
+    display: flex;
+    height: 128px;
+}
+
+.middle .right .Rbottom .RBotLeft {
+    background-color: green;
+    width: 50%;
+}
+
+.middle .right .Rbottom .RBotRight {
+    background-color: red;
+    width: 50%;
+}
+
+footer {
+    background-color: blue;
+    height: 50px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 800;
+    padding: 5px 0px 10px 10px;
+}

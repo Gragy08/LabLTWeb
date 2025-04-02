@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #605B5A;
+}
+
+.container {
+    background-color: white;
+    width: 750px;
+}
+
+.headerTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    height: 50px;
+    background-color: #D3CDCC;
+}
+
+.headerName {
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.headerSearch input {
+    width: 200px;
+    padding: 5px;
+}
+
+.headerBottom {
+    background-color: #EBAC76;
+    padding: 5px 10px;
+}
+
+.headerList {
+    display: flex;
+    gap: 10px;
+}
+
+.headerList a {
+    color: blue;
+    font-size: 14px;
+}

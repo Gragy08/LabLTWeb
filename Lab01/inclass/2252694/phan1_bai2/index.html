@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .Genderpart {
+            width: 50%;
+            border: 2px double  gray;
+            position: relative;
+            padding: 15px 10px 10px 10px;
+        }
+
+        .Genderpart::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border: 2px solid black; /* Viền ngoài màu xám */
+            z-index: -1;
+        }
+
+        .title {
+            background-color: white;
+            position: absolute;
+            top: -10px;
+            padding: 0 5px;
+        }
+
+        table {
+            border: 1px solid black;
+        }
+        table td,th {
+            border: 1px solid black;
+        }
+
+        .img {
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+    <img src="assets/Picture.png" alt="1">
+    <h2>About</h2>
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab cum libero ipsa sed voluptatibus odio sequi minus molestiae distinctio, dolorum ducimus corrupti perspiciatis sunt ratione labore possimus dolore. Labore, saepe?</p>
+    <h2>Intro</h2>
+    <video controls>
+        <source src="http://www.w3schools.com/html/mov_bbb.mp4">
+    </video>
+    <h3>Our Locations</h3>
+    <ul>
+        <li>USA
+            <ul>
+                <li><a href="#">New York</a></li>
+                <li><a href="#">Colombus</a></li>
+                <li><a href="#">Austin</a></li>
+                <li><a href="#">Phily</a></li>
+            </ul>
+        </li>
+        <li>World
+            <ul>
+                <li><a href="#">Ottawa</a></li>
+                <li><a href="#">Sydney</a></li>
+            </ul>
+        </li>
+    </ul>
+    <h3>Upcoming Classes</h3>
+    <table>
+        <tr>
+            <th>Location</th>
+            <th>Topic</th>
+        </tr>
+        <tr>
+            <td>New York</td>
+            <td>JavaScript & jQuery</td>
+        </tr>
+        <tr>
+            <td>San Francisco</td>
+            <td>HTML & CSS</td>
+        </tr>
+    </table>
+    <h3>Sign Up!</h3>
+    <form>
+    <label for="name">Name:</label>
+    <input type="text" id="name">
+    <br><br>
+    <label for="email">Email:</label>
+    <input type="text" id="email">
+    <br><br>
+    <label for="location">Location:</label>
+    <select id="location">
+        <option value="New York">New York</option>
+        <option value="San Francisco" selected>San Francisco</option>
+    </select>
+    <br><br>
+    <div class="Genderpart">
+        <div class="title">Gender:</div>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">Female</label>
+    </div>
+    <br>
+    <label for="exp">Experience:</label>
+    <br>
+    <textarea id="exp"></textarea>
+    <br>
+    <button type="submit">Sign Up</button>
+    </form>
+</body>
+</html>
